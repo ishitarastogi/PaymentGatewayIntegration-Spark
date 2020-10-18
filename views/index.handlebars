@@ -1,1 +1,29 @@
-hello world
+
+<section class="py-2">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h1 class="display-3 mt-3 pt-5">
+        Giving things for Happiness
+      </h1><p class="lead">Your change can make a change</b></p>
+      <form action="/charge" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_51Hct2ULSW13A9t9m25ie3ck70gmffzi3go5S7XzSUw2aEyPhTwVLOyi8KcR0PeWM6REZW1aOlE6OFr5lUk8EmZav00ggpIDrBK"
+          data-amount="1101"
+          data-name="WE CARE"
+          data-description="Donate for a better change"
+          data-image="/img/img2.jpeg"
+          data-locale="auto">
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+        </script>
+        <button type="submit" class="btn btn-outline-dark text-white btn-lg">Donate $10</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img src="/img/img1.jpg" alt="nn" class="img-fluid">
+    </div>
+  </div>
+</section>
