@@ -16,3 +16,9 @@ Template engines: To put dynamic content into our HTML page we use this
 app.engine('handlebars', exhbs())
 we say to our engine to use handlebar engine
 2 parameter(we use that variable to invoke it as a function)
+
+
+checkout function return    
+Stripe token      // reference to a actual card
+sripeTokenType     : 'card'
+Stripe email      
