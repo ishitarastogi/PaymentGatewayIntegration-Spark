@@ -1,5 +1,6 @@
 const express = require('express');
-const stripe = require('stripe')('sk_test_51Hct2ULSW13A9t9mDSwN2UufmrMceud8nAV3EEuAqpkqbIbzFCklJuewlghjGOegsSjlFOB7Wb9vvxu89xto1MHc00GjR4prAt');
+const keys = require('./config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
 const bodyParser=require('body-parser');
 const exphbs=require('express-handlebars');
 const app=express();
@@ -13,19 +14,22 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-// Set Static Folder
+
 app.use(express.static(`${__dirname}/public`));
 
 // Index Route
 app.get('/', (req, res) => {
-  res.render('index');//, {
-  
+  res.render('index', {
+    stripePublishableKey: keys.stripePublishableKey
+  });
 });
 
+
+    
 app.post('/charge', function(req, res){ 
   
-
-  const amount = 1000;
+  
+  const amount = 2500;
   
   stripe.customers.create({
     email: req.body.stripeEmail,
@@ -33,23 +37,20 @@ app.post('/charge', function(req, res){
   }) 
   .then(customer => stripe.charges.create({
     amount,
-    description: 'Donation',
+    description: 'D',
     currency: 'usd',
     customer: customer.id
   })) 
   .then((charge) => { 
-      res.render("Success")  
-  })
+      res.render("Success")   
+  }) 
   .catch((err) => { 
-      console.log(err);       
+      console.log('');       
   }); 
 
   console.log("your payment was succesful");
   res.render('success');
 });
-
-
-  
 const port= process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
